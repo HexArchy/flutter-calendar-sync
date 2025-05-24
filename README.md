@@ -118,4 +118,4 @@ Comprehensive LaTeX documentation including:
 
 The mobile application integrates with the backend service at:
 - **Local Development**: `https://localhost/api/v1`
-- **Production**: `https://81.31.244.102/api/v1`
+- **Production**: TODO
