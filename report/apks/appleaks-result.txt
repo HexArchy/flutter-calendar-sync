@@ -1,0 +1,30 @@
+[JSON_Web_Token]
+- androidGradlePluginVersion=8.7.3
+
+[LinkFinder]
+- /proc/self/fd/
+- M/d/yy
+- flutter/accessibility
+- flutter/backgesture
+- flutter/deferredcomponent
+- flutter/isolate
+- flutter/keyboard
+- flutter/keydata
+- flutter/keyevent
+- flutter/lifecycle
+- flutter/localization
+- flutter/mousecursor
+- flutter/navigation
+- flutter/platform
+- flutter/platform_views
+- flutter/platform_views_2
+- flutter/processtext
+- flutter/restoration
+- flutter/scribe
+- flutter/settings
+- flutter/spellcheck
+- flutter/system
+- flutter/textinput
+- http://schemas.android.com/apk/res/android
+- packages/cupertino_icons/assets/CupertinoIcons.ttf
+

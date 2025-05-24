@@ -1,0 +1,52 @@
+# LaTeX intermediate and output files
+*.xml
+*.bcf
+*.bcf-SAVE-ERROR
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.glo
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.gls
+*.ist
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Editor backup files
+*~
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# latexmk specific
+latexmkrc
+
+# MacOS
+.DS_Store
+
+# TeXShop
+*.texpadtmp
+
+# Overleaf
+*.auto
+
+_minted
+_minted/

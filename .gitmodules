@@ -1,0 +1,6 @@
+[submodule "calendar-sync"]
+	path = calendar-sync
+	url = https://github.com/HexArchy/calendar-sync
+[submodule "itmo-calendar"]
+	path = itmo-calendar
+	url = https://github.com/HexArchy/itmo-calendar

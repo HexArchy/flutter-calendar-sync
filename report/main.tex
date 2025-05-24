@@ -1,0 +1,188 @@
+\documentclass[a4paper,12pt,oneside,openany]{memoir}
+\usepackage[left=30mm, right=15mm, top=15mm, bottom=20mm]{geometry}
+
+\pagestyle{plain} % Убираем стандарные для данного класса верхние колонтитулы с заголовком текущей главы, оставляем только номер страницы снизу по центру
+\parindent=1.25cm % Абзацный отступ 1.25 см,
+\usepackage[T2A]{fontenc}
+\usepackage{indentfirst} % Добавляем отступ к первому абзацу
+\usepackage{tempora}  
+\usepackage[english, russian]{babel}
+\newtheorem{definition}{Определение}
+\newtheorem{theorem}{Теорема}
+%%% Задаем стиль заголовков и подзаголовков в тексте %%%
+\usepackage{minted}
+\usemintedstyle{default}
+\setminted{%
+    linenos=true, % Включить нумерацию строк
+    breaklines=true, % Разрыв длинных строк
+    autogobble=true, % Автоматическое удаление отступов в начале строк
+    fontsize=\footnotesize, % Размер шрифта
+    frame=lines, % Тип рамки
+    framesep=2mm, % Отступ рамки от кода
+    baselinestretch=1.2, % Межстрочный интервал
+    fontfamily=tt
+}
+
+\setsecnumdepth{subsection} % Номера разделов считать до третьего уровня включительно, т.е. нумеруются только главы, секции, подсекции
+\renewcommand*{\chapterheadstart}{} % Переопределяем команду, задающую отступ над заголовком, чтобы отступа не было
+\renewcommand*{\printchaptername}{} % Переопределяем команду, печатающую слово "Глава", чтобы оно не печалось
+%\renewcommand*{\printchapternum}{} % То же самое для номера главы - тут не надо, номер главы оставляем
+\renewcommand*{\chapnumfont}{\normalfont\bfseries} % Меняем стиль шрифта для номера главы: нормальный размер, полужирный
+\renewcommand*{\afterchapternum}{\hspace{1em}} % Меняем разделитель между номером главы и названием
+\renewcommand*{\printchaptertitle}{\normalfont\bfseries\centering\MakeUppercase} % Меняем стиль написания для заголовка главы: нормальный размер, полужирный, центрированный, заглавными буквами
+\setbeforesecskip{20pt} % Задаем отступ перед заголовком секции
+\setaftersecskip{20pt} % Ставим такой же отступ после заголовка секции
+\setsecheadstyle{\raggedright\normalfont\bfseries} % Меняем стиль написания для заголовка секции: выравнивание по правому краю без переносов, нормальный размер, полужирный
+\setbeforesubsecskip{20pt} % Задаем отступ перед заголовком подсекции
+\setaftersubsecskip{20pt} % Ставим такой же отступ после заголовка подсекции
+\setsubsecheadstyle{\raggedright\normalfont\bfseries}  % Меняем стиль написания для заголовка подсекции: выравнивание по правому краю без переносов, нормальный размер, полужирный
+
+%%% Задаем параметры оглавления %%%
+
+\addto\captionsrussian{\renewcommand\contentsname{Содержание}} % Меняем слово "Оглавление" на "Содержание"
+\setrmarg{2.55em plus1fil} % Запрещаем переносы слов в оглавлении
+%\setlength{\cftbeforechapterskip}{0pt} % Эта команда убирает интервал между заголовками глав - тут не надо, так красивее смотрится
+\renewcommand{\aftertoctitle}{\afterchaptertitle \vspace{-\cftbeforechapterskip}} % Делаем отступ между словом "Содержание" и первой строкой таким же, как у заголовков глав
+\renewcommand*{\chapternumberline}[1]{} % Делаем так, чтобы номер главы не печатался - тут не надо
+\renewcommand*{\cftchapternumwidth}{1.5em} % Ставим подходящий по размеру разделитель между номером главы и самим заголовком
+\renewcommand*{\cftchapterfont}{\normalfont\MakeUppercase} % Названия глав обычным шрифтом заглавными буквами
+\renewcommand*{\cftchapterpagefont}{\normalfont} % Номера страниц обычным шрифтом
+\renewcommand*{\cftchapterdotsep}{\cftdotsep} % Делаем точки до номера страницы после названий глав
+\renewcommand*{\cftdotsep}{1} % Задаем расстояние между точками
+\renewcommand*{\cftchapterleader}{\cftdotfill{\cftchapterdotsep}} % Делаем точки стандартной формы (по умолчанию они "жирные")
+\maxtocdepth{subsection} % В оглавление попадают только разделы первыхтрех уровней: главы, секции и подсекции
+
+%%% Выравнивание и переносы %%%
+
+%% http://tex.stackexchange.com/questions/241343/what-is-the-meaning-of-fussy-sloppy-emergencystretch-tolerance-hbadness
+%% http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em                             % В случае проблем регулировать в первую очередь
+\hfuzz 0.3pt
+\vfuzz \hfuzz
+%\dbottom
+%\sloppy                                            % Избавляемся от переполнений
+\clubpenalty=10000                                  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000                                 % Запрещаем разрыв страницы после последней строки абзаца
+\brokenpenalty=4991                                 % Ограничение на разрыв страницы, если строка заканчивается переносом
+
+%%% Объясняем компилятору, какие буквы русского алфавита можно использовать в перечислениях (подрисунках и нумерованных списках) %%%
+%%% По ГОСТ нельзя использовать буквы ё, з, й, о, ч, ь, ы, ъ %%%
+%%% Здесь также переопределены заглавные буквы, хотя в принципе они в документе не используются %%%
+
+\makeatletter
+    \def\russian@Alph#1{\ifcase#1\or
+       А\or Б\or В\or Г\or Д\or Е\or Ж\or
+       И\or К\or Л\or М\or Н\or
+       П\or Р\or С\or Т\or У\or Ф\or Х\or
+       Ц\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{russian@Alph}\fi}
+    \def\russian@alph#1{\ifcase#1\or
+       а\or б\or в\or г\or д\or е\or ж\or
+       и\or к\or л\or м\or н\or
+       п\or р\or с\or т\or у\or ф\or х\or
+       ц\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{russian@alph}\fi}
+\makeatother
+
+%%% Задаем параметры оформления рисунков и таблиц %%%
+
+\usepackage{graphicx, caption, subcaption} % Подгружаем пакеты для работы с графикой и настройки подписей
+\graphicspath{{images/}} % Определяем папку с рисунками
+\captionsetup[figure]{font=small, width=\textwidth, name=Рисунок, justification=centering} % Задаем параметры подписей к рисункам: маленький шрифт (в данном случае 12pt), ширина равна ширине текста, полнотекстовая надпись "Рисунок", выравнивание по центру
+\captionsetup[subfigure]{font=small} % Индексы подрисунков а), б) и так далее тоже шрифтом 12pt (по умолчанию делает еще меньше)
+\captionsetup[table]{singlelinecheck=false,font=small,width=\textwidth,justification=justified} % Задаем параметры подписей к таблицам: запрещаем переносы, маленький шрифт (в данном случае 12pt), ширина равна ширине текста, выравнивание по ширине
+\captiondelim{ --- } % Разделителем между номером рисунка/таблицы и текстом в подписи является длинное тире
+\setkeys{Gin}{width=\textwidth} % По умолчанию размер всех добавляемых рисунков будет подгоняться под ширину текста
+\renewcommand{\thesubfigure}{\asbuk{subfigure}} % Нумерация подрисунков строчными буквами кириллицы
+%\setlength{\abovecaptionskip}{0pt} % Отбивка над подписью - тут не меняем
+%\setlength{\belowcaptionskip}{0pt} % Отбивка под подписью - тут не меняем
+\usepackage[section]{placeins} % Объекты типа float (рисунки/таблицы) не вылезают за границы секциии, в которой они объявлены
+
+%%% Задаем параметры ссылок и гиперссылок %%% 
+
+\usepackage{hyperref}                               % Подгружаем нужный пакет
+\hypersetup{
+    colorlinks=false,      % Отключить цветные ссылки
+    linktocpage=true,      % Ссылка только на номер страницы в 
+    pdfborder={0 0 0}      % Убрать рамки вокруг ссылок        
+}
+
+%%% Настраиваем отображение списков %%%
+
+\usepackage{enumitem}                               % Подгружаем пакет для гибкой настройки списков
+\renewcommand*{\labelitemi}{\normalfont{--}}        % В ненумерованных списках для пунктов используем короткое тире
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\russian@alph}     % Объясняем пакету enumitem, как использовать asbuk
+\makeatother
+\renewcommand{\labelenumii}{\asbuk{enumii})}        % Кириллица для второго уровня нумерации
+\renewcommand{\labelenumiii}{\arabic{enumiii})}     % Арабские цифры для третьего уровня нумерации
+\setlist{noitemsep, leftmargin=*}                   % Убираем интервалы между пунками одного уровня в списке
+\setlist[1]{labelindent=\parindent}                 % Отступ у пунктов списка равен абзацному отступу
+\setlist[2]{leftmargin=\parindent}                  % Плюс еще один такой же отступ для следующего уровня
+\setlist[3]{leftmargin=\parindent}                  % И еще один для третьего уровня
+
+%%% Счетчики для нумерации объектов %%%
+
+% \counterwithout{figure}{chapter}                    % Сквозная нумерация рисунков по документу
+% \counterwithout{equation}{chapter}                  % Сквозная нумерация математических выражений по документу
+% \counterwithout{table}{chapter}                     % Сквозная нумерация таблиц по документу
+\usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{listings} 
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+\usepackage{tikz}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{bibla.bib} % Ensure this points to your actual .bib file
+
+\usetikzlibrary{shapes.geometric,calc,positioning,arrows}
+\usetikzlibrary{positioning}
+\makeatletter
+%% make esint definition in line with amsmath
+\@for\next:={int,iint,iiint,iiiint,dotsint,oint,oiint,sqint,sqiint,
+  ointctrclockwise,ointclockwise,varointclockwise,varointctrclockwise,
+  fint,varoiint,landupint,landdownint}\do{%
+    \expandafter\edef\csname\next\endcsname{%
+      \noexpand\DOTSI
+      \expandafter\noexpand\csname\next op\endcsname
+      \noexpand\ilimits@
+    }%
+  }
+\makeatother
+
+\newcommand{\necessary}{\square}           % необходимо (символ квадрата)
+\newcommand{\possible}{\lozenge}         % возможно (символ ромба)
+
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+
+% Определение окружения для доказательств
+\newenvironment{logicproof}{%
+    \begin{mdframed}[
+        linewidth=0.5pt,
+        leftmargin=0pt,
+        rightmargin=0pt,
+        backgroundcolor=gray!5,
+        innertopmargin=5pt,
+        innerbottommargin=5pt
+    ]
+    \textbf{Доказательство:}\par\nopagebreak
+}{%
+    \end{mdframed}
+}
+\begin{document}
+\input{src/title}
+\newpage
+\setcounter{page}{2}
+\OnehalfSpacing*
+\tableofcontents* %Содержание 
+\newpage
+\input{tasks/intro}
+\input{tasks/laba}
+\input{tasks/outro}
+
+\end{document}

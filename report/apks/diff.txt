@@ -1,0 +1,9 @@
+diff --color -r app-release-no-obfuscate/apktool.yml decompiled-release/apktool.yml
+2c2
+< apkFileName: app-release-no-obfuscate.apk
+---
+> apkFileName: app-release.apk
+Only in app-release-no-obfuscate/smali/h1: A.1.smali
+Only in decompiled-release/smali/h1: A.smali
+Only in decompiled-release/smali/h1: a.1.smali
+Only in app-release-no-obfuscate/smali/h1: a.smali
